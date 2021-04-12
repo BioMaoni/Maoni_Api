@@ -32,4 +32,3 @@ else{
     );
 }
 print_r(json_encode($user_arr));
-?>
