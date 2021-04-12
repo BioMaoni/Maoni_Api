@@ -6,8 +6,9 @@
     session_start();
     $_SESSION['ID'] = $id;
     $_SESSION['email'] = $_POST['email'];
+    echo $_SESSION['ID'];
     }
 else{
     session_destroy();
-    header("Location: ../views/login.php"); 
+   header("Location: login.html"); 
 }
