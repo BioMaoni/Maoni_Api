@@ -1,24 +1,22 @@
 <?php
 
 // include database and object files
-include_once '../config/database.php';
-include_once '../objects/user.php';
+include_once '../../config/database.php';
+include_once '../../objects/user.php';
 
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
 
 // prepare user object
-$user = new user($db);
+$user = new User($db);
 
 // set user property values
 $user->name = $_POST['name'];
+$user->surname = $_POST['surname'];
 $user->email = $_POST['email'];
 $user->password = base64_encode($_POST['password']);
-$user->phone = $_POST['phone'];
-$user->gender = $_POST['gender'];
-$user->specialist = $_POST['specialist'];
-$user->created = date('Y-m-d H:i:s');
+$user->country = $_POST['country'];
 
 // create the user
 if ($user->create()) {
@@ -27,10 +25,10 @@ if ($user->create()) {
         "message" => "Successfully Signup!",
         "id" => $user->id,
         "name" => $user->name,
+        "surname" => $user->surname,
         "email" => $user->email,
-        "phone" => $user->phone,
-        "gender" => $user->gender,
-        "specialist" => $user->specialist
+        "password" => $user->password,
+        "country" => $user->country
     );
 } else {
     $user_arr = array(
